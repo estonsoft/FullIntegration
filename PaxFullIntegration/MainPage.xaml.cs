@@ -26,7 +26,12 @@
         }
         private void OnDoCreditClicked(object sender, EventArgs e)
         {
-            
+            CardTransactions cardTransactions = new CardTransactions();
+            Thread thread1 = new Thread(async () =>
+            {
+                cardTransactions.Sale("0.01");
+            });
+            thread1.Start();
         }
         private async void OnAdjustTipClicked(object sender, EventArgs e)
         {

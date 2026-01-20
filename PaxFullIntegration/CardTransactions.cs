@@ -15,14 +15,15 @@ namespace PaxFullIntegration
             Terminal terminal = getTerminal().Result;
             if (terminal != null)
             {
-                terminal.Manage.SetVariable(new POSLinkAdmin.Manage.SetVariableRequest(), out SetVariableResponse())
+                //terminal.Manage.SetVariable(new POSLinkAdmin.Manage.SetVariableRequest(), out SetVariableResponse())
             }
         }
 
-        public void Sale(decimal amount)
+        public void Sale(string amount)
         {
             try
             {
+                _ = Initialise();
                 var pos = getTerminal().Result;
 
                 var request = new InputAccountWithEmvRequest
@@ -31,7 +32,7 @@ namespace PaxFullIntegration
                     TransactionType = TransactionType.Sale,
                     AmountInformation = new AmountRequest
                     {
-                        TransactionAmount = ((int)(amount * 100)).ToString()
+                        TransactionAmount = amount
                     },
                     //EntryMode = EntryMode.NotSet, // terminal decides
                     StatusReportFlag = StatusReportFlag.ToReport
