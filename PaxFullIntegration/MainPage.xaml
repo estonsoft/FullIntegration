@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="PaxFullIntegration.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <ScrollView x:Name="MainScrollView">
+        <HorizontalStackLayout x:Name="MainLayout" Margin="0,20,0,0">
+
+            <!--  Left Panel: Configuration Settings  -->
+            <VerticalStackLayout
+                x:Name="SettingsLayout"
+                Padding="30,0"
+                HorizontalOptions="Start"
+                Spacing="25">
+
+                <!--  Communication Settings  -->
+                <HorizontalStackLayout x:Name="CommSettingLayout" Margin="0,20,0,0">
+                    <Label
+                        FontSize="18"
+                        HorizontalOptions="Center"
+                        Text="Comm Type:" />
+                    <Entry
+                        x:Name="commSettingEntry"
+                        Text="TCP"
+                        TextChanged="CommSettingChanged"
+                        WidthRequest="200" />
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout
+                    x:Name="ipStackLayout"
+                    Margin="0,10,0,0"
+                    IsVisible="True">
+                    <Label
+                        FontSize="18"
+                        HorizontalOptions="Center"
+                        Text="IP:" />
+                    <Entry
+                        x:Name="ipEntry"
+                        Text="127.0.0.1"
+                        WidthRequest="200" />
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout
+                    x:Name="portStackLayout"
+                    Margin="0,10,0,0"
+                    IsVisible="True">
+                    <Label
+                        FontSize="18"
+                        HorizontalOptions="Center"
+                        Text="Port:" />
+                    <Entry
+                        x:Name="portEntry"
+                        Text="10009"
+                        WidthRequest="200" />
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout
+                    x:Name="serialPortStackLayout"
+                    Margin="0,10,0,0"
+                    IsVisible="False">
+                    <Label
+                        FontSize="18"
+                        HorizontalOptions="Center"
+                        Text="Serial Port:" />
+                    <Entry
+                        x:Name="serialPortEntry"
+                        Text="/dev/ttyS4"
+                        WidthRequest="200" />
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout
+                    x:Name="baudrateStackLayout"
+                    Margin="0,10,0,0"
+                    IsVisible="False">
+                    <Label
+                        FontSize="18"
+                        HorizontalOptions="Center"
+                        Text="Baudrate:" />
+                    <Entry
+                        x:Name="baudrateEntry"
+                        Text="9600"
+                        WidthRequest="200" />
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout
+                    x:Name="timeoutStackLayout"
+                    Margin="0,10,0,0"
+                    IsVisible="True">
+                    <Label
+                        FontSize="18"
+                        HorizontalOptions="Center"
+                        Text="Timeout:" />
+                    <Entry
+                        x:Name="timeoutEntry"
+                        Text="60000"
+                        WidthRequest="200" />
+                </HorizontalStackLayout>
+
+                <!--  Response Data  -->
+                <HorizontalStackLayout x:Name="ResponseCodeLayout" Margin="0,10,0,0">
+                    <Label
+                        FontSize="18"
+                        HorizontalOptions="Center"
+                        Text="Response Code:" />
+                    <Entry x:Name="resCodeEntry" WidthRequest="200" />
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout x:Name="ResponseMsgLayout" Margin="0,10,0,0">
+                    <Label
+                        FontSize="18"
+                        HorizontalOptions="Center"
+                        Text="Response Message:" />
+                    <Entry x:Name="resMsgEntry" WidthRequest="200" />
+                </HorizontalStackLayout>
+
+                <!--  Log Display  -->
+                <Entry
+                    x:Name="LogLabel"
+                    FontSize="18"
+                    HorizontalOptions="Center"
+                    IsReadOnly="True" />
+
+            </VerticalStackLayout>
+
+            <!--  Right Panel: Action Buttons  -->
+            <Grid
+                x:Name="ButtonGrid"
+                Padding="30,0"
+                ColumnSpacing="25"
+                HorizontalOptions="Start"
+                RowSpacing="25">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!--  Row 1  -->
+                <Button
+                    x:Name="DoTokenBtn"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Clicked="OnTokenCard"
+                    HorizontalOptions="Center"
+                    Text="Create Token" />
+
+                <Button
+                    x:Name="DoCreditBtn"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Clicked="OnDoCreditClicked"
+                    HorizontalOptions="Center"
+                    Text="Sale" />
+
+                <Button
+                    x:Name="AdjustTipBtn"
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Clicked="OnAdjustTipClicked"
+                    HorizontalOptions="Center"
+                    Text="Offline Status" />
+
+                <!--  Row 2  -->
+                <Button
+                    x:Name="PartialBtn"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Clicked="OnPartialBtnClicked"
+                    HorizontalOptions="Center"
+                    Text="Partial Refund" />
+
+                <Button
+                    x:Name="VoidBtn"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Clicked="OnVoidBtnClicked"
+                    HorizontalOptions="Center"
+                    Text="Void Sale" />
+                <Button
+                    x:Name="RefundBtn"
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Clicked="OnRefundBtnClicked"
+                    HorizontalOptions="Center"
+                    Text="Refund" />
+                <!--  Row 3  -->
+            </Grid>
+
+        </HorizontalStackLayout>
+    </ScrollView>
+
+</ContentPage>
